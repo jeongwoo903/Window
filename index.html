@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+
+      body {
+        background-color: rgb(125, 111, 252);
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas"></canvas>
+    <script>
+      (function() {
+        const canvas = document.querySelector("canvas");
+        const context = canvas.getContext("2d");
+        const screenX = window.innerWidth;
+        const screenY = window.innerHeight;
+
+        canvas.width = screenX;
+        canvas.height = screenY;
+
+        const rect1X = screenX * 0.2;
+        const rect1Y = screenY * 0.1;
+        const rect2X = screenX / 2 - 75;
+        const rect2Y = screenY * 0.7;
+
+        const grd = context.createLinearGradient(rect1X, rect1Y + 150, rect2X + 150, rect2Y);
+        grd.addColorStop(0, "rgba(229, 203, 88, 1)");
+        grd.addColorStop(1, "rgba(229, 203, 88, 0)");
+
+        context.moveTo(rect1X, rect1Y + 150);
+        context.lineTo(rect1X + 150, rect1Y);
+        context.lineTo(rect2X + 150, rect2Y);
+        context.lineTo(rect2X, rect2Y + 150);
+        context.fillStyle = grd;
+        context.fill();
+
+        context.beginPath();
+        context.fillStyle = "white";
+        context.fill();
+        context.fillRect(rect1X, rect1Y, 150, 150);
+        context.closePath();
+
+        context.rect(rect2X, rect2Y, 150, 150);
+      })();
+    </script>
+  </body>
+</html>
